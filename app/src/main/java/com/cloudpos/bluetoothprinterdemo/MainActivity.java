@@ -45,37 +45,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button1:
-                getDevices();
-                break;
-            case R.id.button2:
-                String sendData = "Welcome to use WizarPOS_Print device!\nHere is the demo content :12345678901234567890123456789012345678901234567890\n";
-                try {
-                    byte[] data = sendData.getBytes("gbk");
-                    send(data);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, "print fail!", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.button4:
-                textView.append("\nPrinting, please wait ！");
-                printBitmap();
-                break;
-            case R.id.button5:
-                String textData = "欢迎使用wizarpos打印服务\n";
-                try {
-                    byte[] data = textData.getBytes("gbk");
-                    send(data);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, "print fail!", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.button3:
-                disconnect();
-                break;
+        int id = v.getId();
+        if (id == R.id.button1) {
+            getDevices();
+        } else if (id == R.id.button2) {
+            String sendData = "Welcome to using the WizarPOS_Print device!\nHere is the demo content :12345678901234567890123456789012345678901234567890\n";
+            try {
+                byte[] data = sendData.getBytes("gbk");
+                send(data);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "print fail!", Toast.LENGTH_SHORT).show();
+            }
+        } else if (id == R.id.button4) {
+            textView.append("\nPrinting, please wait ！");
+            printBitmap();
+        } else if (id == R.id.button5) {
+            String textData = "Welcome to WizarPOS printing service\n";
+            try {
+                byte[] data = textData.getBytes("gbk");
+                send(data);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "print fail!", Toast.LENGTH_SHORT).show();
+            }
+        } else if (id == R.id.button3) {
+            disconnect();
         }
     }
 
